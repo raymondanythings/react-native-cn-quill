@@ -30,6 +30,7 @@ interface CreateHtmlArgs {
   fonts: Array<CustomFont>;
   defaultFontFamily?: string;
   customJS?: string;
+  disabled?: boolean;
 }
 
 const Inital_Args = {
@@ -49,6 +50,7 @@ const Inital_Args = {
   customStyles: [],
   fonts: [],
   customJS: '',
+  disabled: false,
 } as CreateHtmlArgs;
 
 export const createHtml = (args: CreateHtmlArgs = Inital_Args) => {
@@ -101,6 +103,7 @@ export const createHtml = (args: CreateHtmlArgs = Inital_Args) => {
     theme: args.theme,
     customFonts: args.fonts.map((f) => getFontName(f.name)),
     customJS: args.customJS ? args.customJS : '',
+    disabled: args.disabled ?? false,
   })}
   ${editor_js}
   </body>

@@ -7,6 +7,7 @@ export const create_quill = ({
   theme,
   customFonts = [],
   customJS,
+  disabled,
 }: {
   id: string;
   toolbar: 'false' | string;
@@ -16,6 +17,7 @@ export const create_quill = ({
   theme: 'snow' | 'bubble';
   customFonts: Array<string>;
   customJS: string;
+  disabled?: boolean;
 }) => {
   let font = '';
   if (customFonts.length > 0) {
@@ -40,7 +42,7 @@ export const create_quill = ({
 
   return `
   <script>
-  
+
   ${font}
   ${customJS}
   var quill = new Quill('#${id}', {
@@ -48,6 +50,7 @@ export const create_quill = ({
     placeholder: '${placeholder}',
     theme: '${theme}'
   });
+  ${disabled && 'quill.enable(false);'}
   </script>
   `;
 };
